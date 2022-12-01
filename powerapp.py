@@ -50,6 +50,8 @@ def my_app():
 
 	json_data = json.loads(r.text)
 
+	# Skal skive mer her
+
 #	print(json_data)
 	print(json_data['data']['viewer']['homes'][0]['consumption'])
 
@@ -68,9 +70,10 @@ def my_app():
 	print(datetime.strptime(timestr, '%Y-%m-%dT%H:%M:%S.%f%z'))
 	ret = datetime.strptime(timestr, '%Y-%m-%dT%H:%M:%S.%f%z')
 
-	#return json_data #json_data['data']['viewer']['homes'][0]['consumption']['nodes'][4]
+	return json_data #json_data['data']['viewer']['homes'][0]['consumption']['nodes'][4]
 	#return table
 	#return str(ret)
-	temp = df.todict('records')
-	columnNames = df.columns.values
-	return render_template('record.html', records=temp, colnames=columnNames)
+
+	#temp = df.todict('records')
+	#columnNames = df.columns.values
+	#return render_template('record.html', records=temp, colnames=columnNames)
