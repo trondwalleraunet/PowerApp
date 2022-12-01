@@ -50,27 +50,51 @@ def my_app():
 
 	json_data = json.loads(r.text)
 
-	# Skal skive mer her
-
 #	print(json_data)
-	print(json_data['data']['viewer']['homes'][0]['consumption'])
+#	print(json_data['data']['viewer']['homes'][0]['consumption'])
 
+	consumption = json_data['data']['viewer']['homes'][0]['consumption']['nodes']
+	subscription = json_data['data']['viewer']['homes'][0]['currentSubscription']
+
+	for index in range(len(consumption)):
+		for key in consumption[index]:
+			print(consumption[index][key])
+
+	#print("Consumption:")
+	#print(consumption)
+
+	#print("Subscription:")
+	#print(subscription)
+
+	print("Price: " + str(subscription['priceInfo']['current']['total']))
+	print("Level: " + str(subscription['priceInfo']['current']['level']))
+
+	#for key in consumption[index]:
+	#	print(consumption[index][key])
+
+
+	
+	#json_data['data']['viewer']['homes'][0]['consumption']['nodes'])
+	#print(json_data['data']['viewer']['homes'][0]['consumption']['nodes'][0])
 
 #	df = pd.DataFrame.from_dict(json_data, orient='currentSubscription')
 
-	df_data = json_data['data']['viewer']['homes'][0]['consumption']['nodes']
-	df = pd.DataFrame(df_data)
-	print(df)
+	#df_data = json_data['data']['viewer']['homes'][0]['consumption']['nodes']
+	#df = pd.DataFrame(df_data)
+	#print(df)
 
-	table = df.to_html(index=False)
+	#table = df.to_html(index=False)
 
-	timestr = str(json_data['data']['viewer']['homes'][0]['consumption']['nodes'][0]['from'])
-	print("HER:")
-	print(timestr)
-	print(datetime.strptime(timestr, '%Y-%m-%dT%H:%M:%S.%f%z'))
-	ret = datetime.strptime(timestr, '%Y-%m-%dT%H:%M:%S.%f%z')
+	#timestr = str(json_data['data']['viewer']['homes'][0]['consumption']['nodes'][0]['from'])
+	#print("HER:")
+	#print(timestr)
+	#print(datetime.strptime(timestr, '%Y-%m-%dT%H:%M:%S.%f%z'))
+	#ret = datetime.strptime(timestr, '%Y-%m-%dT%H:%M:%S.%f%z')
 
-	return json_data #json_data['data']['viewer']['homes'][0]['consumption']['nodes'][4]
+	#return json_data #json_data['data']['viewer']['homes'][0]['consumption']['nodes'][4]
+
+	#return json_data['data']['viewer']['homes'][0]['consumption']['nodes'][0]
+	return json_data
 	#return table
 	#return str(ret)
 
