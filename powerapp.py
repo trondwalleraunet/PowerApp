@@ -7,7 +7,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 @app.route('/')
-def my_app():
+def index():
 	query = """query {
 	  viewer {
 	    homes {
@@ -47,6 +47,7 @@ def my_app():
 	r = requests.post(url, json={'query': query}, headers=headers)
 	print(r.status_code)
 	#print(r.text)
+	print('Test')
 
 	json_data = json.loads(r.text)
 
@@ -94,10 +95,11 @@ def my_app():
 	#return json_data #json_data['data']['viewer']['homes'][0]['consumption']['nodes'][4]
 
 	#return json_data['data']['viewer']['homes'][0]['consumption']['nodes'][0]
-	return json_data
+	#return json_data
 	#return table
 	#return str(ret)
 
 	#temp = df.todict('records')
 	#columnNames = df.columns.values
 	#return render_template('record.html', records=temp, colnames=columnNames)
+	return render_template("index.html", subscription=subscription)
