@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<style>
+.main {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sising:border-box;
+	max-width: 500px;
+	height: 200px;
+	background-color: powderblue;
+	padding: 10px;
+	{% if subscription['priceInfo']['current']['level'] == 'EXPENSIVE' %}
+	border: 10px solid red;  
+	{% else %}
+	border: 10px solid blue;
+	{% endif %}
+	}
+</style>
+</head>
+<title>{% block title %}{% endblock %} - PowerApp</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<nav>
+</nav>
+<section class="main">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+
+    <div class="info"> 
+      <h1>&nbsp PowerApp</h1>
+    	&nbsp Price : {{ subscription['priceInfo']['current']['total'] }} NOK <br>
+    	&nbsp Level : {{ subscription['priceInfo']['current']['level'] }} <br>
+    	
+    </div>
+
+  {% block content %}{% endblock %}
+</section>
