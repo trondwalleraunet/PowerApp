@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+	<meta http-equiv="refresh" content"600">
 <style>
 body {
 	margin: 0px;
@@ -12,7 +13,7 @@ body {
 	-moz-box-sizing: border-box;
 	-webkit-box-sising:border-box;
 	max-width: 1024px;
-	height: 600px;
+	height: 540px;
 	background-color: powderblue;
 	padding: 10px;
 	{% if subscription['priceInfo']['current']['level'] == 'EXPENSIVE' %}
@@ -24,6 +25,28 @@ body {
 	border: 10px solid blue;
 	{% endif %}
 	}
+
+.head {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sising:border-box;
+	max-width: 1014px;
+	height: 100px;
+	background-color: white;
+	border: 10px solid powderblue;
+	}
+
+.info {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sising:border-box;
+	max-width: 1014px;
+	height: 100px;
+	background-color: powderblue;
+	padding: 10px;
+	
+	}
+
 </style>
 </head>
 <title>{% block title %}{% endblock %} - PowerApp</title>
@@ -32,13 +55,16 @@ body {
 </nav>
 <section class="main">
   <header>
-    {% block header %}{% endblock %}
+	<div class="head">
+	<img class="logo" src="tibber-logo.png" alt="Tibber" height="80" style="float:right">
+        <h1>&nbsp PowerApp</h1>
+	{% block header %}{% endblock %}
+	</div>
   </header>
 
     <div class="info"> 
-      <h1>&nbsp PowerApp</h1>
-    	&nbsp Price : {{ subscription['priceInfo']['current']['total'] }} NOK <br>
-    	&nbsp Level : {{ subscription['priceInfo']['current']['level'] }} <br>
+    	&nbsp Pris nå : {{ subscription['priceInfo']['current']['total'] }} NOK <br>
+    	&nbsp Nivå : {{ subscription['priceInfo']['current']['level'] }} <br>
     	
     </div>
 

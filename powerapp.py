@@ -57,15 +57,11 @@ def index():
 	consumption = json_data['data']['viewer']['homes'][0]['consumption']['nodes']
 	subscription = json_data['data']['viewer']['homes'][0]['currentSubscription']
 
-	for index in range(len(consumption)):
-		for key in consumption[index]:
-			print(consumption[index][key])
-
-	#print("Consumption:")
-	#print(consumption)
-
-	#print("Subscription:")
-	#print(subscription)
+# ### Printer hele consumption til console
+#	for index in range(len(consumption)):
+#		for key in consumption[index]:
+#			print(consumption[index][key])
+# ###
 
 	print("Price: " + str(subscription['priceInfo']['current']['total']))
 	print("Level: " + str(subscription['priceInfo']['current']['level']))
