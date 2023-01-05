@@ -34,6 +34,7 @@ body {
 	height: 100px;
 	background-color: white;
 	border: 10px solid powderblue;
+	vertical-align: middle;
 	}
 
 .info {
@@ -57,14 +58,22 @@ body {
   <header>
 	<div class="head">
 	<img class="logo" src="{{url_for('static', filename='tibber-logo.png')}}" alt="Tibber" height="80" style="float:right">
-        <h1>&nbsp PowerApp</h1>
+        <h2 style="color: #23B8CC;">&nbsp {{ home['address1'] }}, {{ home['city'] }} </h2>
 	{% block header %}{% endblock %}
 	</div>
   </header>
 
     <div class="info"> 
+    	<b>
     	&nbsp Pris nå : {{ subscription['priceInfo']['current']['total'] }} NOK <br>
     	&nbsp Nivå : {{ subscription['priceInfo']['current']['level'] }} <br>
+    	</b>
+    	
+    	<br>
+    	
+    	{% for time in today %}
+    		{{time['startsAt']}} : {{time['total']}} <br>
+    	{% endfor %}
     	
     </div>
 

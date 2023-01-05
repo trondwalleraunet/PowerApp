@@ -11,6 +11,12 @@ def index():
 	query_name = """query {
 			  viewer {
 			    name
+			    homes {
+			      address {
+			        address1
+			        city
+			      }
+			    }
   			  }
 			} """
 
@@ -59,19 +65,23 @@ def index():
 
 	r2 = requests.post(url, json={'query': query_name}, headers=headers)
 	print(r2.text)
+	json_user = json.loads(r2.text)
 
 #	print(json_data)
 #	print(json_data['data']['viewer']['homes'][0]['consumption'])
-
+	
+	name = json_user['data']['viewer']['name']
+	home = json_user['data']['viewer']['homes'][0]['address']
 	consumption = json_data['data']['viewer']['homes'][0]['consumption']['nodes']
 	subscription = json_data['data']['viewer']['homes'][0]['currentSubscription']
+	today = subscription['priceInfo']['today']
 
 # ### Printer hele consumption til console
 #	for index in range(len(consumption)):
 #		for key in consumption[index]:
 #			print(consumption[index][key])
 # ###
-
+	print(str(subscription['priceInfo']['today']))
 	print("Price: " + str(subscription['priceInfo']['current']['total']))
 	print("Level: " + str(subscription['priceInfo']['current']['level']))
 
@@ -107,4 +117,4 @@ def index():
 	#temp = df.todict('records')
 	#columnNames = df.columns.values
 	#return render_template('record.html', records=temp, colnames=columnNames)
-	return render_template("index.html", subscription=subscription)
+	return render_template("index.html", subscription=subscription, home=home, today=today)
