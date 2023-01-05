@@ -8,6 +8,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+	query_name = """query {
+			  viewer {
+			    name
+  			  }
+			} """
+
 	query = """query {
 	  viewer {
 	    homes {
@@ -43,13 +49,16 @@ def index():
 	}"""
 
 	url = 'https://api.tibber.com/v1-beta/gql'
-	headers = {"Authorization": "Bearer dUYmM7LqSBZ9YLadzZGYq1Rb7dxezY61QtS87v8919g"}
+	headers = {"Authorization": "Bearer 5K4MVS-OjfWhK_4yrjOlFe1F6kJXPVf7eQYggo8ebAE"}
 	r = requests.post(url, json={'query': query}, headers=headers)
 	print(r.status_code)
 	#print(r.text)
 	print('Test')
 
 	json_data = json.loads(r.text)
+
+	r2 = requests.post(url, json={'query': query_name}, headers=headers)
+	print(r2.text)
 
 #	print(json_data)
 #	print(json_data['data']['viewer']['homes'][0]['consumption'])
