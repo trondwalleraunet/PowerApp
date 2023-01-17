@@ -62,7 +62,7 @@ body {
 	{% block header %}{% endblock %}
 	</div>
   </header>
-
+    
     <div class="info"> 
     	<b>
     	&nbsp Pris nå : {{ subscription['priceInfo']['current']['total'] }} NOK <br>
@@ -76,6 +76,8 @@ body {
     	{% endfor %}
     	
     </div>
-
+    
   {% block content %}{% endblock %}
 </section>
+
+</HTML>

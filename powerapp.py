@@ -3,6 +3,14 @@ import requests
 import json
 import pandas as pd
 from datetime import datetime
+import numpy as np
+import matplotlib.pyplot as plt
+import io
+import random
+from flask import Response
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
+
 
 app = Flask(__name__)
 
@@ -117,4 +125,38 @@ def index():
 	#temp = df.todict('records')
 	#columnNames = df.columns.values
 	#return render_template('record.html', records=temp, colnames=columnNames)
+	   
 	return render_template("index.html", subscription=subscription, home=home, today=today)
+	
+@app.route('/test')
+def chartTest():
+
+	data = {'apple': 67, 'mango': 60, 'lichi': 58}
+	names = list(data.keys())
+	values = list(data.values())
+	plt.bar(0,values[0],tick_label=names[0])
+	plt.bar(1,values[1],tick_label=names[1])
+	plt.bar(2,values[2],tick_label=names[2])
+	plt.xticks(range(0,3),names)
+	plt.savefig('static/new_plot.png')
+	#plt.savefig('fruit.png')
+	#plt.show()
+	
+	#return render_template('untitled1.html', name = plt.show())
+	return render_template('test.html', name = 'static/new_plot', url ='static/new_plot.png')
+	
+@app.route('/test2')
+def plot_png():
+	fig = create_figure()
+	output = io.BytesIO()
+	FigureCanvas(fig).print_png(output)
+	return Response(output.getvalue(), mimetype='image/png')
+
+def create_figure():
+	fig = Figure()
+	axis = fig.add_subplot(1, 1, 1)
+	xs = range(100)
+	ys = [random.randint(1, 50) for x in xs]
+	axis.plot(xs, ys)
+	return fig
+	
