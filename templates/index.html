@@ -68,12 +68,10 @@ body {
     	&nbsp Pris nå : {{ subscription['priceInfo']['current']['total'] }} NOK <br>
     	&nbsp Nivå : {{ subscription['priceInfo']['current']['level'] }} <br>
     	</b>
-    	
-    	<br>
-    	
-    	{% for time in today %}
-    		{{time['startsAt']}} : {{time['total']}} <br>
-    	{% endfor %}
+
+	<img src={{ name }} alt="Chart" height="350">
+
+	<br>
     	
     </div>
     
