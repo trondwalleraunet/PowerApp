@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+   <body>
+
+      <h1>Price Chart</h1>
+
+      <p>{{ name }}</p>
+
+      <img src={{ name }} alt="Chart" height="42" width="42">
+
+	<img src="static/new_plot.png" alt="my plot">
+
+	<img src="static/new_plot.png" alt="Pris idag">
+    	{% for time in today %}
+    		{{time['startsAt']}} : {{time['total']}} <br>
+    	{% endfor %}
+	
+   </body>
+</html
