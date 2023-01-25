@@ -10,6 +10,7 @@ import random
 from flask import Response
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
+import os.path
 
 
 app = Flask(__name__)
@@ -62,8 +63,17 @@ def index():
 	  }
 	}"""
 
+	with open('keyfile', 'r') as f:
+		bearer = f.read()
+		bearer = bearer.strip()
+		print(len(bearer))
+		if len(bearer) == 0:
+			bearer = '5K4MVS-OjfWhK_4yrjOlFe1F6kJXPVf7eQYggo8ebAE'
+	
+	#bearer = '5K4MVS-OjfWhK_4yrjOlFe1F6kJXPVf7eQYggo8ebAE'
+	print(bearer)
 	url = 'https://api.tibber.com/v1-beta/gql'
-	headers = {"Authorization": "Bearer 5K4MVS-OjfWhK_4yrjOlFe1F6kJXPVf7eQYggo8ebAE"}
+	headers = {"Authorization": "Bearer " + bearer}
 	r = requests.post(url, json={'query': query}, headers=headers)
 	print(r.status_code)
 	#print(r.text)
